@@ -23,7 +23,7 @@ esac
 
 git -C $target_dir pull
 
-tag=$(echo $(date +%Y.%m.%d))
+tag=$(echo $(date +%Y.%m.%d.%H%M%S))
 
 fqin="$image_name:$tag"
 
@@ -33,4 +33,4 @@ kind load docker-image $fqin
 
 echo "deploying $fqin"
 
-yq "select(di == 0).spec.template.spec.containers[0].image = \"$fqin\"" deployment/$deploy_file.yml | kubectl apply -f -
+yq "select(di == 0).spec.template.spec.containers[0].image = \"$fqin\"" ~/local/deployment/$deploy_file.yml | kubectl apply -f -
