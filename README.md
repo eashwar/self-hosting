@@ -11,3 +11,17 @@ I deploy projects to a kubernetes cluster and use Cloudflare Tunnels to make thi
 - Kind
 - Kubectl
 - YQ
+
+
+## communication to the host
+
+api.eash.dev looks to mount the api-data/ directory locally.
+
+Add an Automator folder action that monitors `api-data/site-deploy` and runs the following:
+
+```zsh
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+
+zsh ~/local/build-and-deploy-subsystem.sh site
+```

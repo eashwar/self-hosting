@@ -12,12 +12,19 @@ spec:
       labels:
         app: eash-api
     spec:
+      volumes:
+        - name: host-api-data
+          hostPath:
+            path: /api-data
       containers:
       - name: eash-api
         image: placeholder
         imagePullPolicy: Never
         ports:
         - containerPort: 30081
+        volumeMounts:
+          - name: host-api-data
+            mountPath: /data
 ---
 apiVersion: v1
 kind: Service
