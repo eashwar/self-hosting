@@ -27,7 +27,7 @@ tag=$(echo $(date +%Y.%m.%d.%H%M%S))
 
 fqin="$image_name:$tag"
 
-docker build -t $fqin $target_dir
+docker build --no-cache -t $fqin $target_dir
 
 kind load docker-image $fqin
 
