@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: cloudflare/cloudflared:2022.3.0
+        image: cloudflare/cloudflared:2026.9.1
         args:
         - tunnel
         # Points cloudflared to the config file, which configures what
@@ -74,7 +74,11 @@ data:
     metrics: 0.0.0.0:2000
     
     no-autoupdate: true
-    
+
+    # kind's default network is IPv4-only, so pin this rather than let
+    # cloudflared's new "auto" default (2026.4.0+) try IPv6 first.
+    edge-ip-version: "4"
+
     ingress:
     - hostname: eash.dev
       service: http://eash-site-service:30080
